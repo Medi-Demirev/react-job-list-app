@@ -1,0 +1,120 @@
+:root {
+    --urgent-color: rgb(252 69 0);
+    --regular-color:rgb(255 255 0);
+    --trivial-color:rgb(0 189 253);
+}
+
+.job_container{
+    border: 4px solid rgb(15, 15, 15);
+    width: 800px;
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 15px auto
+
+   
+}
+
+.job_field{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   margin: 30px 0px 15px 0px;  
+   
+
+}
+.job_label{
+    display: flex;
+    justify-content: flex-start;
+}
+.job{
+    width: 680px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid rgb(87, 85, 85);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+.priority_field{
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+   margin: 30px 0px 30px 0px;  
+  
+  
+}
+.priority_label{
+    display: flex;
+    justify-content: flex-start;
+}
+.priority{
+    width: 680px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid rgb(87, 85, 85);
+    box-sizing: border-box;
+}
+
+.create_btn{
+    display: flex;
+    margin-bottom: 25px;
+}
+.bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search_job{
+    width: 90px;
+    height: 40px;
+    border-radius: 6px;
+    text-align: center;
+ 
+}
+.line{
+   
+    border: 1px solid #090909;
+}
+.table_container{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   margin-bottom: 15px;
+
+}
+.table{
+    border-collapse: collapse;
+}
+tr{
+    height: 80px;
+   
+}
+.job_title{
+  display: flex;
+  
+  justify-content: flex-start;
+ margin-top: 30px;
+  font-weight: 500;
+}
+.type_priority{
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-weight: 500;
+}
+
+.table_buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 50px;
+    gap: 10px;
+}
+.table_button_edit,
+.table_button_delete{
+    width: 80px;
+    color: rgb(102, 100, 100);
+}
