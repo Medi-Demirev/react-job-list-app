@@ -11,8 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin: 15px auto
-
+    margin: 15px auto;
    
 }
 
@@ -60,61 +59,134 @@
 .create_btn{
     display: flex;
     margin-bottom: 25px;
+    cursor: pointer;
 }
 .bottom{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+   
 }
 
+.title{
+    display: flex;
+
+}
 .search_job{
     width: 90px;
     height: 40px;
     border-radius: 6px;
-    text-align: center;
+  
+    justify-content: space-between;
+    text-align:center;
  
 }
+.divider{
+    display: block;
+}
 .line{
-   
+ 
     border: 1px solid #090909;
+    width: auto;
 }
 .table_container{
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   margin-bottom: 15px;
-
+   display: grid;
+   grid-template-rows: repeat(3, 1fr);
+   margin-bottom: 30px;
 }
 .table{
+   
     border-collapse: collapse;
 }
-tr{
-    height: 80px;
-   
-}
-.job_title{
-  display: flex;
-  
-  justify-content: flex-start;
- margin-top: 30px;
-  font-weight: 500;
-}
-.type_priority{
-    justify-content: flex-start;
-    align-items: flex-start;
-    font-weight: 500;
-}
+.table_row{
+   display: flex;
+     height: 80px;
+     width:680px;
+    
+ }
+ td{
+  align-items: center;
+    width: 226px;
+    
+ }
 
-.table_buttons{
+ .job_title{
+   display: flex;
+   align-items: center;
+   margin-left: 10px;
+   
+ }
+ .type_priority{
+display: flex;
+ }
+ .table_buttons{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-right: 50px;
-    gap: 10px;
+    justify-self: flex-start;
+    
+    gap:10px;
+    margin-top: 25px;
+
+    
+ }
+ .table_button_edit,
+ .table_button_delete{
+     width: 60px;
+     height: 20px;
+     color: rgb(102, 100, 100);
+     cursor: pointer;
+ }
+/*.table_container{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ 
+    margin-bottom: 15px;
+  
+ }
+tbody{
+    display: flex;
+    flex-direction: column;
 }
-.table_button_edit,
-.table_button_delete{
-    width: 80px;
-    color: rgb(102, 100, 100);
-}
+ .table{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+     border-collapse: collapse;
+ }
+ .table_row{
+    display: flex;
+     height: 80px;
+     width:680px;
+    
+ }
+ 
+ .job_title{
+   display: flex;
+   
+   justify-content: flex-start;
+   
+ }
+ .type_priority{
+    display: flex;
+     justify-content: flex-start;
+     align-items: flex-start;
+     font-weight: 500;
+ }
+ 
+ .table_buttons{
+     display: flex;
+     flex-direction: row;
+     justify-content: flex-end;
+     align-items: flex-end;
+     
+     gap: 10px;
+ }
+ .table_button_edit,
+ .table_button_delete{
+     width: 80px;
+     color: rgb(102, 100, 100);
+     cursor: pointer;
+ }*/

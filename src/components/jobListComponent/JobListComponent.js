@@ -1,128 +1,243 @@
-import { useState, useEffect} from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import './JobListComponent.css';
+import { useState, useContext } from "react";
 
+import { JobListContext } from "../../context/JobListContext";
+import EditJobListComponent from "../EditJobListComponent/EditJobListComponent";
+
+import "./JobListComponent.css";
 
 const JobListComponent = () => {
-    const localStorageData = JSON.parse(localStorage.getItem("job_list")) || [];
-    const [inputs,setInputs] = useState({job:'', priority:''});
-    const [data, setData] = useState(localStorageData);
+  const { addJob, deleteJob, data } = useContext(JobListContext);
 
-    const id = uuidv4();
+  const [inputs, setInputs] = useState({ job: "", priority: "" });
+  const [editIsOpen, setEditIsOpen] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
+  const [currentData, setCurrentData] = useState(data);
 
-    const changeHandler = (e) => {
-        setInputs({
-          ...inputs,
-          [e.target.name]: e.target.value
-        })
-      };
-
-  
-  
-
-      const onSubmit = (e) => {
-        e.preventDefault();
-        const inputData = {
-            jobName : inputs.job,
-            typePriority : inputs.priority
-        }
-        setData([...data, {name:inputData.jobName, priority:inputData.typePriority, id:id}])
-      
-      inputs.job= '';
-      inputs.priority ='';
-    }
-
-    useEffect(()=>{
-    
-        localStorage.setItem("job_list", JSON.stringify(data))
-       },[data]);
-console.log(data);
-console.log(inputs);
-
-const handleDeleteClick = (id) => {
-    const filtered = data.filter((x) => {
-      return x.id !== id;
+  const changeHandler = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const editHandler = (id) => {
+    const newEditItem = data.find((elem) => {
+      return elem.id === id;
     });
 
-    setData(filtered);
-
+    setCurrentData(newEditItem);
+    setEditIsOpen(true);
   };
 
-  useEffect(() => {
-    localStorage.setItem("job_list", JSON.stringify(data));
-  }, [data]);
-  
-  const colors = {
-    urgentColor: '#fc4500',
-    regularColor:'#ffff00',
-    trivialColor: '#00bdfd',
-}
-    return(
-        <div className="job_container">
+  const handleSubmit = () => {
+    setDisabled(true);
+  };
+  const { job, priority } = inputs;
 
-      
-        <form method="get" className='job_form' onSubmit={onSubmit}>
-            <div className="job_field">
-                <label className="job_label">Job:</label>
-                <input className="job"
-                 placeholder="Job"
-                 name='job'
-                 id='job'
-                 value={inputs.job || ""}
-                 onChange={changeHandler}
-                 maxLength={10}
-                 required>
-                 </input>
-            </div>
-            <div className="priority_field">
-             <label className="priority_label"  >Priority:</label>
-                <select name="priority"
-                 className='priority'
-                 placeholder ='Urgent'
-                 value={inputs.priority || ""}
-                 onChange={changeHandler}
-                 required >
-                    <option value="" >Please select priority</option>
-                    <option value={'Urgent'} >Urgent</option>
-                    <option value={'Regular'}>Regular</option>
-                    <option value={'Trivial'}>Trivial</option>
-                </select>
-            </div>
-            <button className="create_btn"  type='submit'>Create</button>
-  
-        <div className='bottom'>
-            <h4 className='title'>JOB LIST</h4>
-            
-            <input className='search_job' placeholder='Search Job'></input>
+  const onSubmit = (e) => {
+    e.preventDefault();
+    addJob(job, priority);
+
+    inputs.job = "";
+    inputs.priority = "";
+  };
+
+  const colors = {
+    urgentColor: "#fc4500",
+    regularColor: "#ffff00",
+    trivialColor: "#00bdfd",
+  };
+
+  return !editIsOpen ? (
+    <div className="job_container">
+      <form method="get" className="job_form" onSubmit={onSubmit}>
+        <div className="job_field">
+          <label className="job_label">Job:</label>
+          <input
+            className="job"
+            placeholder="Job"
+            name="job"
+            id="job"
+            value={inputs.job}
+            onChange={changeHandler}
+            maxLength={10}
+            required
+          ></input>
         </div>
-            <div><hr className='line'></hr></div>
-            <div className='table_container'>
-                {data.map((currentJob)=>
-                  
-                
-                <table className='table' key={currentJob.id}>
-                   <tbody>
-                    <tr style={{backgroundColor: currentJob.priority === 'Urgent' ? colors.urgentColor
-                     :currentJob.priority === 'Regular'? colors.regularColor : colors.trivialColor}}>
-                        <td className='job_title'>{currentJob.name}</td>
-                        <td className='type_priority'>{currentJob.priority}</td>
-                        <td>
-                            <div className='table_buttons'>
-                                <button className='table_button_edit'>Edit</button>
-                                <button className='table_button_delete'  
-                                onClick={() => {
-                                handleDeleteClick(currentJob.id)
-                            }}>Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                   </tbody>
-                </table>
-)}
-            </div>
+        <div className="priority_field">
+          <label className="priority_label">Priority:</label>
+          <select
+            name="priority"
+            className="priority"
+            placeholder="Urgent"
+            value={inputs.priority}
+            onChange={changeHandler}
+            required
+          >
+            <option value="">Please select priority</option>
+            <option value={"Urgent"}>Urgent</option>
+            <option value={"Regular"}>Regular</option>
+            <option value={"Trivial"}>Trivial</option>
+          </select>
+        </div>
+
+        <button className="create_btn" type="submit">
+          Create
+        </button>
+        <div className="bottom">
+          <h4 className="title">JOB LIST</h4>
+          <input className="search_job" placeholder="Search Job"></input>
+        </div>
+        <div className="divider">
+          <hr className="line"></hr>
+        </div>
+
+        <div className="table_container">
+          {data?.map((currentJob) => (
+            <table className="table" key={currentJob.id}>
+              <tbody>
+                <tr
+                  className="table_row"
+                  key={currentJob.priority}
+                  style={{
+                    backgroundColor:
+                      currentJob.priority === "Urgent"
+                        ? colors.urgentColor
+                        : currentJob.priority === "Regular"
+                        ? colors.regularColor
+                        : colors.trivialColor,
+                  }}
+                >
+                  <td className="job_title">{currentJob.job}</td>
+                  <td className="type_priority">{currentJob.priority}</td>
+                  <td>
+                    <div className="table_buttons" key={currentJob.id}>
+                      <button
+                        className="table_button_edit"
+                        type="submit"
+                        onClick={() => {
+                          editHandler(currentJob.id);
+                          handleSubmit();
+                        }}
+                        disabled={isDisabled}
+                        title="Edit item"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="table_button_delete"
+                        onClick={() => deleteJob(currentJob.id)}
+                        title="Delete item"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          ))}
+        </div>
+      </form>
+    </div>
+  ) : (
+    <>
+      <div className="job_container">
+        <form method="get" className="job_form" onSubmit={onSubmit}>
+          <div className="job_field">
+            <label className="job_label">Job:</label>
+            <input
+              className="job"
+              placeholder="Job"
+              name="job"
+              id="job"
+              value={inputs.job}
+              onChange={changeHandler}
+              maxLength={10}
+              required
+            ></input>
+          </div>
+          <div className="priority_field">
+            <label className="priority_label">Priority:</label>
+            <select
+              name="priority"
+              className="priority"
+              placeholder="Urgent"
+              value={inputs.priority}
+              onChange={changeHandler}
+              required
+            >
+              <option value="">Please select priority</option>
+              <option value={"Urgent"}>Urgent</option>
+              <option value={"Regular"}>Regular</option>
+              <option value={"Trivial"}>Trivial</option>
+            </select>
+          </div>
+
+          <button className="create_btn" type="submit">
+            Create
+          </button>
+          <div className="bottom">
+            <h4 className="title">JOB LIST</h4>
+            <input className="search_job" placeholder="Search Job"></input>
+          </div>
+          <div className="divider">
+            <hr className="line"></hr>
+          </div>
+          <div className="table_container">
+            {data?.map((currentJob) => (
+              <table className="table" key={currentJob.id}>
+                <tbody>
+                  <tr
+                    className="table_row"
+                    key={currentJob.priority}
+                    style={{
+                      backgroundColor:
+                        currentJob.priority === "Urgent"
+                          ? colors.urgentColor
+                          : currentJob.priority === "Regular"
+                          ? colors.regularColor
+                          : colors.trivialColor,
+                    }}
+                  >
+                    <td className="job_title">{currentJob.job}</td>
+                    <td className="type_priority">{currentJob.priority}</td>
+                    <td>
+                      <div className="table_buttons">
+                        <button
+                          className="table_button_edit"
+                          type="submit"
+                          onClick={() => {
+                            editHandler(currentJob.id);
+                            handleSubmit();
+                          }}
+                          disabled={isDisabled}
+                          title="Edit item"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="table_button_delete"
+                          onClick={() => {
+                            deleteJob(currentJob.id);
+                            handleSubmit();
+                          }}
+                          disabled={isDisabled}
+                          title="Delete item"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            ))}
+          </div>
         </form>
-        </div>
-    )
+      </div>
+      {<EditJobListComponent currentData={currentData} />}
+    </>
+  );
 };
 
 export default JobListComponent;
