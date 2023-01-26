@@ -1,6 +1,6 @@
 .priority_edit {
     display: flex;
-    width: 600px;
+    width: 470px;
     height: 250px;
     margin: 15px auto;
     border-radius: 8px;
@@ -9,8 +9,9 @@
     background-color: rgb(255, 255, 255);
     flex-direction: column;
     align-items: center;
-
-
+    margin-bottom: 100px;
+    position: absolute;
+    margin-left: 1250px;
 }
 
 .priority_edit::before {
@@ -22,17 +23,25 @@
     left: -8px;
     right: 8px;
     bottom: 8px;
-    width: 615px;
+    width: 485px;
     height: 265px;
 }
 
 .priority_select {
+    display: flex;
+    align-items: center;
+    color: #87919d;
+    margin: auto;
     width: 300px;
     height: 20px;
 }
 
 .priority_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 30px;
+    color: #87919d;
 }
 
 .edit_btn_container {
@@ -44,24 +53,20 @@
 }
 
 .update_btn {
-
     width: 80px;
+    color: #87919d;
     cursor: pointer;
 }
 
 .close_btn_container {
-    margin-left: 560px;
+    margin-left: 440px;
     margin-top: 10px;
 }
 
 .close_btn {
-
     font-size: 15px;
     color: #d2d2d2;
     background-color: white;
     border: none;
     cursor: pointer;
-
-
-
 }
