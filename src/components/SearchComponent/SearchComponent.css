@@ -1,0 +1,40 @@
+.search_wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 680px;
+}
+.bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+
+.title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.search_job{
+   display: flex;
+   flex-direction: column;
+    width: 90px;
+    height: 40px;
+    border-radius: 6px;
+    justify-content: space-between;
+    text-align:center;
+    margin-left: 516px;
+}
+
+.divider{
+    display: flex;
+    width: 680px;
+}
+.line{
+ 
+    border: 1px solid #090909;
+    width: 680px;
+}
