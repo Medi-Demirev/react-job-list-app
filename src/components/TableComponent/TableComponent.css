@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: space-between;
    
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     
   
  }
@@ -14,7 +14,7 @@
 }
 .table_row{
    display: flex;
-     height: 80px;
+     height: 75px;
      width:680px;
      min-width: 0;;
     
@@ -31,12 +31,13 @@
    display: flex;
    align-items: center;
    margin-left: 10px;
-  
-   
-   
+   font-size: 1rem;
+   font-weight: 500;
  }
  .type_priority{
 display: flex;
+font-size: 1rem;
+   font-weight: 500;
  }
  .table_buttons{
     display: flex;
