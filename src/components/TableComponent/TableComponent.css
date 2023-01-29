@@ -1,0 +1,51 @@
+.table_container{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+    margin-bottom: 15px;
+    
+  
+ }
+ .table{
+   
+    border-collapse: collapse;
+}
+.table_row{
+   display: flex;
+     height: 80px;
+     width:680px;
+    
+    
+ }
+ td{
+  align-items: center;
+    width: 226px;
+    
+ }
+
+ .job_title{
+   display: flex;
+   align-items: center;
+   margin-left: 10px;
+   
+ }
+ .type_priority{
+display: flex;
+ }
+ .table_buttons{
+    display: flex;
+    justify-self: flex-start;
+    gap:10px;
+    margin-top: 25px;
+
+    
+ }
+ .table_button_edit,
+ .table_button_delete{
+     width: 60px;
+     height: 20px;
+     color: rgb(102, 100, 100);
+     cursor: pointer;
+ }
