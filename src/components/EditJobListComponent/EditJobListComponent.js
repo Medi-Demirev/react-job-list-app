@@ -12,7 +12,8 @@ const EditJobListComponent = ({ currentData }) => {
 
   const id = currentData.map((x) => x.id).pop();
   const job = currentData.map((x) => x.job).pop();
-  const priority = inputs.priority;
+  const currentPriority = currentData.map((x) => x.priority).pop();
+  let priority = inputs.priority;
 
   const changeHandler = (e) => {
     setInputs({
@@ -20,8 +21,7 @@ const EditJobListComponent = ({ currentData }) => {
       [e.target.name]: e.target.value,
     });
   };
-  const updatedJob = { id, job, priority };
-
+  
   const closeHandler = () => {
     setIsOpen(false);
     window.location.reload();
@@ -29,10 +29,25 @@ const EditJobListComponent = ({ currentData }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    editJob(id, updatedJob);
-    setIsOpen(true);
     
-  };
+    switch (inputs.priority) {
+        case '':
+            priority = currentPriority;
+            let currentUpdatedJob = { id, job, priority };
+            editJob(id, currentUpdatedJob);
+            setIsOpen(false);
+            window.location.reload();
+            break;
+    
+        default:
+            priority = priority;
+            let updatedJob = { id, job, priority };
+            editJob(id, updatedJob);
+            setIsOpen(false);
+            window.location.reload();
+            break;
+    }
+}
 
   return isOpen ? (
     <div className="priority_edit">
@@ -57,7 +72,7 @@ const EditJobListComponent = ({ currentData }) => {
               <option value={"Trivial"}>Trivial</option>
             </select>
             <div className="edit_btn_container">
-              <button className="update_btn" type="submit" title="Update item">
+              <button className="update_btn" type="submit" onClick={onSubmit} title="Update item">
                 Update
               </button>
             </div>
