@@ -1,0 +1,23 @@
+.footer .footer-item{
+    width: auto;
+    height:40px;
+    display: flex;
+    flex: 1 1;
+    justify-content: center;
+    margin-top: 10px;
+
+}
+.footer-icon{
+    height: 40px;
+    margin-top: 8px
+}
+.copyright{
+    color: #00bdfd;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px
+}
