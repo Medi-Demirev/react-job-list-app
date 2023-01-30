@@ -6,3 +6,14 @@
    align-items: center;
    margin: 15px auto; 
 }
+.main_title{
+   font-weight: 700;
+   font-size: 25px;
+   color: #00bdfd;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 0px;
+   padding-top: 15px;
+   padding-bottom: 15px;
+}
