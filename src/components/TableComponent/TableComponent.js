@@ -33,7 +33,7 @@ const TableComponent = () => {
     e.preventDefault();
     setSearchInput(e.target.value);
 
-    if (searchInput == "") {
+    if (searchInput === "") {
       setIsFound(true);
     }
   };
