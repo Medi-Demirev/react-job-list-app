@@ -31,7 +31,8 @@ const AddJobComponent = () =>{
               validationResult = validator.validateJobName(jobValue) || validator.validateJobNameLength(jobValue.length);
 
               break;
-
+        default:
+            break;
           }
           setError(state => ({
             ...state,
@@ -39,7 +40,6 @@ const AddJobComponent = () =>{
           }));
       };
 
-   
 
       const onSubmit = (e) => {
         e.preventDefault();

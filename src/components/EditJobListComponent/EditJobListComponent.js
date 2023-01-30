@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { JobListContext } from "../../context/JobListContext";
-import TableComponent from "../TableComponent/TableComponent";
 
 import "./EditJobListComponent.css";
 
@@ -40,7 +39,6 @@ const EditJobListComponent = ({ currentData }) => {
             break;
     
         default:
-            priority = priority;
             let updatedJob = { id, job, priority };
             editJob(id, updatedJob);
             setIsOpen(false);
